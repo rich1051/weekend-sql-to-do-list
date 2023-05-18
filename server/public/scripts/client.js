@@ -4,7 +4,7 @@ function onReady() {
     getTasks();
     $('#submit-button').on('click', postTasks);
     // $('#tasksTableBody').on('click', '.delete-button', deleteTask);
-    // $('#tasksTableBody').on('click', 'complete-button', upvoteSong);
+    // $('#tasksTableBody').on('click', '.complete-button', completeTask);
 };
 
 function getTasks() {
