@@ -2,6 +2,18 @@ const express = require('express');
 const router = express.Router();
 const pool = require ('../modules/pool');
 
+router.get('/', (req, res) => {
+        let queryText = 'SELECT * FROM "tasks" ORDER BY "description" DESC;';
+        pool.query(queryText)
+            .then(result => {
+                res.send(result.rows);
+            })
+            .catch(error => {
+                console.log('Query:', queryText, 'Error:', error);
+                res.sendStatus(500);
+            })
+    });
+
 router.post('/', (req, res) => {
         let newTask = req.body;
         console.log('req.body:', req.body);
@@ -24,5 +36,22 @@ router.post('/', (req, res) => {
                 res.sendStatus(500);
             })
     });
+
+router.delete('/:id', (req, res) => {
+
+    let idToDelete = req.params.id;
+        
+    let queryText = 'DELETE FROM "tasks" WHERE "id" = $1;';
+    
+        pool.query(queryText, [idToDelete])
+        .then((result) => {
+            console.log('Task deleted!', result.rows);
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('Error with deletion', error);
+            res.sendStatus(500);
+        })
+    });
+    
 
 module.exports = router;
