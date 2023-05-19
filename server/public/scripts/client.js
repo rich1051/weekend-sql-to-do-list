@@ -4,7 +4,7 @@ function onReady() {
     getTasks();
     $('#submit-button').on('click', postTasks);
     $('#tasksTableBody').on('click', '.delete-button', deleteTask);
-    // $('#tasksTableBody').on('click', '.complete-button', completeTask);
+    $('#tasksTableBody').on('click', '.complete-button', completeTask);
 };
 
 function getTasks() {
@@ -19,7 +19,7 @@ function getTasks() {
                 <tr data-id=${response[i].id}>
                     <td>${response[i].description}</td>
                     <td>${response[i].location}</td>
-                    <td><button class='complete-button'>Complete</button></td>
+                    <td><button class='complete-button'>Complete?</button></td>
                     <td><button class='delete-button'>Delete</button></td>
                 </tr>
             `);
@@ -57,6 +57,21 @@ function deleteTask() {
             console.log('error with deleting task', error);
         })
     };
+
+function completeTask() {
+    console.log('Complete button clicked!');
+    let idToUpdate = $(this).closest('tr').data('id');
+    $(this).parent().parent().css("background-color", "green");
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/${idToUpdate}`,
+    }).then(function(response) {
+        getTasks();
+        console.log(response);
+    }).catch(function(error) {
+        console.log('error with completing task', error);
+    })
+};
 
 // function renderToDom() {
 //     for (let i = 0; i < response.length; i++) {
