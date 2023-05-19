@@ -17,7 +17,7 @@ function getTasks() {
         for (let i = 0; i < response.length; i++) {
             if (response[i].status === true){
             $('#tasksTableBody').append(`
-                <tr data-id=${response[i].id}>
+                <tr data-id=${response[i].id} class='complete'>
                     <td>${response[i].description}</td>
                     <td>${response[i].location}</td>
                     <td>✅</td>

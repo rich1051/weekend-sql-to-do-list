@@ -1,3 +1,6 @@
+.complete {
+  background-color: green;
+}
 h2 {
   background-color: #641723;
   color: #E8DFC4;
@@ -53,6 +56,3 @@ header {
     border-collapse: collapse;
     padding: 12px;
 }
-tr:nth-child(even) {
-    background-color: #E8DFC4;
-  }
