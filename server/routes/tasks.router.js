@@ -3,8 +3,7 @@ const router = express.Router();
 const pool = require ('../modules/pool');
 
 router.get('/', (req, res) => {
-        let queryText = 'SELECT * FROM "tasks";';
-        // 'SELECT * FROM "tasks" ORDER BY "description" DESC;';
+        let queryText ='SELECT * FROM "tasks" ORDER BY "description" DESC;';
         pool.query(queryText)
             .then(result => {
                 res.send(result.rows);
@@ -57,7 +56,7 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
 
     let idToUpdate = req.params.id;
-    let queryText = `UPDATE "tasks" SET "status" = 'true' WHERE "id" = $1;`;
+    let queryText = `UPDATE "tasks" SET "status" = TRUE WHERE "id" = $1;`;
 
         pool.query(queryText, [idToUpdate])
         .then((result) => {
