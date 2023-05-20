@@ -74,7 +74,7 @@ function completeTask(event) {
     event.preventDefault();
     console.log('Complete button clicked!');
     let idToUpdate = $(this).closest('tr').data('id');
-    $(this).parent().parent().css("background-color", "green");
+    // $(this).parent().parent().css("background-color", "green");
     $.ajax({
         type: 'PUT',
         url: `/tasks/${idToUpdate}`,
