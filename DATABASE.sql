@@ -1,7 +1,8 @@
 CREATE TABLE "tasks" (
 	"id" SERIAL,
 	"description" varchar(256),
-	"location" varchar(256)
+	"location" varchar(256),
+	"status" BOOLEAN
 );
 
 INSERT INTO "tasks" 
